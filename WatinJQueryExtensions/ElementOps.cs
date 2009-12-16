@@ -5,7 +5,7 @@ using System.Text;
 using WatiN.Core;
 using Fizzler;
 
-namespace WatinJQueryExtensions
+namespace WatiNCssSelectorExtensions
 {
     public class ElementOps : IElementOps<Element>
     {
@@ -13,7 +13,7 @@ namespace WatinJQueryExtensions
 
         public Selector<Element> Adjacent()
         {
-            throw new NotImplementedException();
+            return nodes => nodes.SelectMany(n => n.ElementsAfterSelf().Take(1));
         }
 
         public Selector<Element> AttributeDashMatch(NamespacePrefix prefix, string name, string value)
@@ -32,17 +32,29 @@ namespace WatinJQueryExtensions
 
         public Selector<Element> AttributeExists(NamespacePrefix prefix, string name)
         {
-            throw new NotImplementedException();
+            return prefix.IsSpecific
+                         ? (Selector<Element>)(nodes => Enumerable.Empty<Element>())
+                         : (nodes => from n in nodes
+                                     where n.GetAttributeValue(name) != null
+                                     select n);
         }
 
         public Selector<Element> AttributeIncludes(NamespacePrefix prefix, string name, string value)
         {
-            throw new NotImplementedException();
+            return prefix.IsSpecific
+                         ? (Selector<Element>)(nodes => Enumerable.Empty<Element>())
+                         : (nodes => from n in nodes
+                                     where n.GetAttributeValue(name).Split(' ').Contains(value)
+                                     select n);
         }
 
         public Selector<Element> AttributePrefixMatch(NamespacePrefix prefix, string name, string value)
         {
-            throw new NotImplementedException();
+            return prefix.IsSpecific
+                         ? (Selector<Element>)(nodes => Enumerable.Empty<Element>())
+                         : (nodes => from n in nodes
+                                     where n.GetAttributeValue(name).StartsWith(value)
+                                     select n);
         }
 
         public Selector<Element> AttributeSubstring(NamespacePrefix prefix, string name, string value)
@@ -52,12 +64,17 @@ namespace WatinJQueryExtensions
 
         public Selector<Element> AttributeSuffixMatch(NamespacePrefix prefix, string name, string value)
         {
-            throw new NotImplementedException();
+            return prefix.IsSpecific
+                         ? (Selector<Element>)(nodes => Enumerable.Empty<Element>())
+                         : (nodes => from n in nodes
+                                     where n.GetAttributeValue(name).EndsWith(value)
+                                     select n);
         }
 
         public Selector<Element> Child()
         {
-            throw new NotImplementedException();
+            //?? does does Children() really return immediate children???
+            return nodes => nodes.SelectMany(n => n.Children());
         }
 
         public Selector<Element> Class(string className)
@@ -78,7 +95,7 @@ namespace WatinJQueryExtensions
 
         public Selector<Element> Empty()
         {
-            throw new NotImplementedException();
+            return nodes => nodes.Where(n => n.Descendents().Count() == 0);
         }
 
         public Selector<Element> FirstChild()
@@ -93,7 +110,11 @@ namespace WatinJQueryExtensions
 
         public Selector<Element> Id(string id)
         {
-            return node => node.Where(n => n.Id == id);
+            return node => node.Where(n => {
+                if (n.Id == null) { return false; }
+                
+                return n.Id.ToUpper() == id.ToUpper();
+            });
         }
 
         public Selector<Element> LastChild()
@@ -115,7 +136,6 @@ namespace WatinJQueryExtensions
         {
             return prefix.IsSpecific ? 
                 (Selector<Element>)(nodes => Enumerable.Empty<Element>())
-                //: (Selector<Element>)(nodes => nodes);
                 : (Selector<Element>)(nodes => nodes.Where(n => n.TagName.ToUpper() == name.ToUpper()));
         }
 
