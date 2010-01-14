@@ -47,120 +47,129 @@ namespace WatinCssSelectorExtensions_Sample
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[Test]
-        //public void Test_03_WITH_CssSelectors()
-        //{
-        //    using (Browser browser = new IE("http://www.google.com"))
-        //    {
-        //        var inputBox = browser.CssSelect("form[action='/search'] input[title='Google Search']") as TextField;
-        //        var buttons = browser.CssSelectAll("input.lsb").ToList();
-        //        var titled = browser.CssSelectAll("*[title]");
-
-        //        Assert.IsNotNull(inputBox);
-        //        Assert.AreEqual(2, buttons.Count());
-
-        //        inputBox.TypeText("Chuck Norris");
-        //        buttons[0].Click();
-        //    }
-        //}
-
-        //[Test]
-        //public void Test_04_WITH_CssSelectors()
-        //{
-        //    using (Browser browser = new IE("http://watin.sourceforge.net/"))
-        //    {
-        //        var main = browser.Div(Find.ById("main"));
-
-        //        Assert.IsNotNull(main);
-        //        //Assert.AreEqual(1, main.Count());
-
-        //        var blockquotes = main.CssSelectAll("blockquote");
-        //        Assert.AreEqual(5, blockquotes.Count());
-        //    }
-        //}
-
     }
 
+    /// <summary>
+    /// Basic CssSelector tests intended to exercise demo each of the selectors as defined and organized in the CSS 3 spec.
+    /// </summary>
     [TestFixture]
-    public class CssSelectorTests
+    public class BasicCssSelectorTests
     { 
         [Test]
-        public void Test_01_UniversalSelectors()
+        public void Test001_UniversalSelectors()
         {
-            using (Browser browser = new IE("http://watin.sourceforge.net/"))
+            using (Browser browser = new IE("http://localhost:8181/"))
             {
-                var main = browser.CssSelect("#main");
-                var universalMain = browser.CssSelect("*#main");
+                var links = browser.CssSelectAll("*");
 
-                Assert.IsNotNull(main);
-                Assert.IsNotNull(universalMain);
-
-                Assert.AreEqual(main.TagName, universalMain.TagName);
-                Assert.AreEqual(main.ClassName, universalMain.ClassName);
+                Console.WriteLine("{0} -- {1}", links.Count(), browser.Elements.Count()); //shouldn't these match?
+                Assert.That(links.Count() > 20);
             }
         }
 
         [Test]
-        public void Test_02_AdjacentSiblingSelectors()
+        public void Test002_TypeSelectors()
         {
-            using (Browser browser = new IE("http://watin.sourceforge.net/"))
+            using (Browser browser = new IE("http://localhost:8181/"))
             {
-
-                var rightBar = browser.CssSelect("#main + #rightbar");
-                Assert.IsNotNull(rightBar);
-
-                var noRightBar = browser.CssSelect("#badMain + #rightbar");
-                Assert.IsNull(noRightBar);
+                var links = browser.CssSelectAll("a");
+                
+                Assert.That(links.Count() > 1);
+                Assert.That(links.First().Text == "Log In");                
             }
+        }
+
+        [Test]
+        public void Test003_AttributeSelectors_HasAttribute() 
+        {
+            using (Browser browser = new IE("http://localhost:8181/"))
+            {
+                var links = browser.CssSelectAll("a[title]");
+                Assert.That(links.Any(e => e.TagName == "A"));
+            }
+        }
+
+        [Test]
+        public void Test004_AttributeSelectors_ExactValue()
+        {
+            using (Browser browser = new IE("http://localhost:8181/"))
+            {
+                var links = browser.CssSelectAll("a[title='ASP.NET Website']");
+                Assert.That(links.Count() == 1);
+            }
+            
+        }
+
+
+        [Test, Ignore("Under Construction")]
+        public void AttributeSelectors_ContainsExactValue()
+        {
+
+        }
+
+        [Test, Ignore("Under Construction")]
+        public void AttributeSelectors_ValueBeginsWith()
+        {
+
+        }
+
+        [Test, Ignore("Under Construction")]
+        public void AttributeSelectors_ValueEndsWith()
+        {
+
+        }
+
+        [Test, Ignore("Under Construction")]
+        public void AttributeSelectors_ValueContains()
+        {
+
+        }
+
+        [Test, Ignore("Under Construction")]
+        public void AttributeSelectors_HyphenSeparatedValue()
+        {
+
+        }
+
+        [Test, Ignore("Under Construction")]
+        public void PseudoSelectors()
+        {
 
         }
 
         [Test]
-        public void Test_02_WITH_CssSelectors()
+        public void Test999_ClassSelectors()
         {
-            using (Browser browser = new IE("http://www.google.com"))
+            using (Browser browser = new IE("http://localhost:8181/"))
             {
-                //var startElement = browser.ElementsOfType<Form>()[0];
-                var startElement = browser.Span(Find.ById("main"));
-                startElement.WaitUntilExists(5);
-
-                //var results = startElement.CssSelectAll("table input.lst");
-                var inputBox = startElement.CssSelect("table input[title='Google Search']") as TextField;
-                var buttons = startElement.CssSelectAll("input.lsb").ToList();
-
-
-                //var main = startElement.CssSelectAll("#body");
-                //Assert.IsTrue(main != null);
-                //Assert.IsTrue(main.Exists);
-
-                Assert.IsNotNull(inputBox);
-                Assert.AreEqual(2, buttons.Count());
-
-                inputBox.TypeText("Chuck Norris");
-                buttons[0].Click();
-
-
+                var links = browser.CssSelectAll("a.level1");
+                Assert.That(links.Count() == 2);
             }
         }
+
+        [Test, Ignore("Under Construction")]
+        public void IdSelectors()
+        { }
+
+        [Test, Ignore("Under Construction")]
+        public void NegationPseudoClass()
+        { }
+
+        [Test, Ignore("Under Construction")]
+        public void DescendantCombinator()
+        { }
+
+        [Test, Ignore("Under Construction")]
+        public void ChildCombinator()
+        { }
+
+        [Test, Ignore("Under Construction")]
+        public void DirectAdjacentCombinator()
+        { }
+
+        [Test, Ignore("Under Construction")]
+        public void IndirectAdjacentCombinator()
+        { }
 
     }
     

@@ -7,7 +7,7 @@ using Fizzler;
 
 namespace WatiNCssSelectorExtensions
 {
-    public class ElementOps : IElementOps<Element>
+    public class WatiNElementOperators : IElementOps<Element>
     {
         #region IElementOps<Element> Members
 
@@ -73,7 +73,7 @@ namespace WatiNCssSelectorExtensions
 
         public Selector<Element> Child()
         {
-            //?? does does Children() really return immediate children???
+            //?? does Children() really return immediate children???
             return nodes => nodes.SelectMany(n => n.Children());
         }
 
@@ -83,7 +83,7 @@ namespace WatiNCssSelectorExtensions
                 {
                     return node.Where(e =>
                         {
-                            return (e.ClassName ?? "").ToLower() == className.ToLower();
+                            return (e.ClassName ?? "").ToLower().Split(' ').Any(s => s == className.ToLower());
                         });
                 };
         }

@@ -11,16 +11,18 @@ namespace WatiNCssSelectorExtensions
 {
     public static class Extensions
     {
-        private static readonly ElementOps _ops = new ElementOps();
-
+        private static readonly WatiNElementOperators _ops = new WatiNElementOperators();
+        
+        #region Public CssSelector Extensions
+        
         public static Element CssSelect(this Document doc, string selector)
         {
-            return doc.Elements.CssSelect(selector);
+            return doc.Elements.CompileAndCssSelect(selector);
         }
 
         public static IEnumerable<Element> CssSelectAll(this Document doc, string selector)
         {
-            return doc.Elements.CssSelectAll(selector);
+            return doc.Elements.CompileAndSelectAll(selector);
         }
 
         public static Element CssSelect(this Element node, string selector)
@@ -30,57 +32,43 @@ namespace WatiNCssSelectorExtensions
        
         public static IEnumerable<Element> CssSelectAll(this Element node, string selector)
         {
-            return CssSelectAll(node, selector, null);
+            return CssSelectAll(node, selector);
         }
+        
+        #endregion
+   
+        #region Compiler & private Select helpers
 
-        public static IEnumerable<Element> CssSelectAll(this Element node, string selector, Func<string, Func<Element, IEnumerable<Element>>> compiler)
+        private static IEnumerable<Element> CompileAndSelectAll(this IEnumerable<Element> nodes, string selector)
         {
-            Func<Element, IEnumerable<Element>> selectorFunction = null;
-            if (compiler == null)
-            {
-                selectorFunction = Compile(selector);
-            }
-            else
-            {
-                selectorFunction = compiler(selector);
-            }
-            return selectorFunction(node);
-
-
-            ////short version of the above
-            //return (compiler ?? Compile)(selector)(node);
-
+            return CompileForElements(selector)(nodes);
         }
 
-        public static IEnumerable<Element> CssSelectAll(this IEnumerable<Element> nodes, string selector)
+        private static Element CompileAndCssSelect(this IEnumerable<Element> nodes, string selector)
         {
-            return Compile2(selector)(nodes);
+            return CompileForElements(selector)(nodes).FirstOrDefault();
         }
 
-        public static Element CssSelect(this IEnumerable<Element> nodes, string selector)
-        {
-            return Compile2(selector)(nodes).FirstOrDefault();
-        }
 
-        public static Func<Element, IEnumerable<Element>> Compile(string selector)
+        private static Func<Element, IEnumerable<Element>> CompileForElement(string selector)
         {
             var compiled = Parser.Parse(selector, new SelectorGenerator<Element>(_ops)).Selector;
             return node => compiled(Enumerable.Repeat(node, 1));
         }
 
-        public static Func<IEnumerable<Element>, IEnumerable<Element>> Compile2(string selector)
+        private static Func<IEnumerable<Element>, IEnumerable<Element>> CompileForElements(string selector)
         {
             var compiled = Parser.Parse(selector, new SelectorGenerator<Element>(_ops)).Selector;
-            return node => {
-                //Console.WriteLine("node check\n");
-                return compiled(node); 
-            };
+            return nodes => compiled(nodes); 
+            
         }
+        
 
-        /////////////////////////
+        #endregion
 
+        #region Supporting Extensions (internal and/or private)
 
-        public static IEnumerable<Element> Children(this Component e)
+        internal static IEnumerable<Element> Children(this Component e)
         {
             if (e is IElementContainer)
             {
@@ -93,7 +81,7 @@ namespace WatiNCssSelectorExtensions
             }
         }
 
-        public static IEnumerable<Element> Descendents(this Component e)
+        internal static IEnumerable<Element> Descendents(this Component e)
         {
             if (e is IElementContainer)
             {
@@ -106,17 +94,18 @@ namespace WatiNCssSelectorExtensions
             }
         }
 
-        public static IEnumerable<Element> ElementsAfterSelf(this Element node)
+        internal static IEnumerable<Element> ElementsAfterSelf(this Element node)
         {
             if (node == null) throw new ArgumentNullException("node");
+
             return node.NodesAfterSelf();
         }
 
-        public static IEnumerable<Element> NodesAfterSelf(this Element node)
+        internal static IEnumerable<Element> NodesAfterSelf(this Element node)
         {
             if (node == null) throw new ArgumentNullException("node");
-            return NodesAfterSelfImpl(node);
 
+            return NodesAfterSelfImpl(node);
         }
 
         private static IEnumerable<Element> NodesAfterSelfImpl(Element node)
@@ -126,6 +115,7 @@ namespace WatiNCssSelectorExtensions
                 yield return node;
             }
         }
-       
+        
+        #endregion
     }
 }
