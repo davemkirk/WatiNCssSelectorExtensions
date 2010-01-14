@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions", "WatinCssSelectorExtensions.csproj", "{27919E8A-4539-4D0B-BC04-77DE0844EA90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions", "WatiNCssSelectorExtensions\WatinCssSelectorExtensions.csproj", "{27919E8A-4539-4D0B-BC04-77DE0844EA90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions_Sample", "..\WatinJQueryExtensions_Sample\WatinCssSelectorExtensions_Sample.csproj", "{AB04924D-CB34-4710-A6A2-2A4361B76DA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions_SampleWeb", "WatinCssSelectorExtensions_SampleWeb\WatinCssSelectorExtensions_SampleWeb.csproj", "{916DC386-028D-4271-A7FA-203BC30AF2CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions_SampleWeb", "..\WatinCssSelectorExtensions_SampleWeb\WatinCssSelectorExtensions_SampleWeb.csproj", "{916DC386-028D-4271-A7FA-203BC30AF2CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatinCssSelectorExtensions_Sample", "WatiNCssSelectorExtensions_Sample\WatinCssSelectorExtensions_Sample.csproj", "{55895416-7642-429D-8B56-4012CA9FE78C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,14 @@ Global
 		{27919E8A-4539-4D0B-BC04-77DE0844EA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27919E8A-4539-4D0B-BC04-77DE0844EA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27919E8A-4539-4D0B-BC04-77DE0844EA90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB04924D-CB34-4710-A6A2-2A4361B76DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB04924D-CB34-4710-A6A2-2A4361B76DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB04924D-CB34-4710-A6A2-2A4361B76DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB04924D-CB34-4710-A6A2-2A4361B76DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{916DC386-028D-4271-A7FA-203BC30AF2CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{916DC386-028D-4271-A7FA-203BC30AF2CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{916DC386-028D-4271-A7FA-203BC30AF2CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{916DC386-028D-4271-A7FA-203BC30AF2CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55895416-7642-429D-8B56-4012CA9FE78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55895416-7642-429D-8B56-4012CA9FE78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55895416-7642-429D-8B56-4012CA9FE78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55895416-7642-429D-8B56-4012CA9FE78C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

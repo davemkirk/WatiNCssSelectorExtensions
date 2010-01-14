@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AB04924D-CB34-4710-A6A2-2A4361B76DA8}</ProjectGuid>
+    <ProjectGuid>{55895416-7642-429D-8B56-4012CA9FE78C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WatinJQueryExtensions_Sample</RootNamespace>
-    <AssemblyName>WatinJQueryExtensions_Sample</AssemblyName>
+    <RootNamespace>WatiNCssSelectorExtensions_Sample</RootNamespace>
+    <AssemblyName>WatiNCssSelectorExtensions_Sample</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -87,9 +87,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WatinJQueryExtensions\WatinJQueryExtensions.csproj">
+    <ProjectReference Include="..\WatiNCssSelectorExtensions\WatinCssSelectorExtensions.csproj">
       <Project>{27919E8A-4539-4D0B-BC04-77DE0844EA90}</Project>
-      <Name>WatinJQueryExtensions</Name>
+      <Name>WatinCssSelectorExtensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
