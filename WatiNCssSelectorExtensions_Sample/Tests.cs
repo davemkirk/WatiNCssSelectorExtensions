@@ -142,8 +142,8 @@ namespace WatinCssSelectorExtensions_Sample
         {
             using (Browser browser = new IE("http://localhost:8181/"))
             {
-                var links = browser.CssSelectAll("a.level1");
-                Assert.That(links.Count() == 2);
+                var menu = browser.CssSelectAll("table.menu");
+                Assert.That(menu.Count() == 1);
             }
         }
 
