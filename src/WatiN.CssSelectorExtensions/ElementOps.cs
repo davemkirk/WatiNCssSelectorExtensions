@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WatiN.Core;
 using Fizzler;
 
-namespace WatiNCssSelectorExtensions
+namespace WatiN.CssSelectorExtensions
 {
     public class WatiNElementOperators : IElementOps<Element>
     {
