@@ -1,3 +1,7 @@
+# Version WatiN.CssSelectorExtensions.0.0.1.12512
+
+Initial release as a nuget.
+
 # To start/compile;
 
 `rake`
