@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 [assembly: AssemblyTitle("WatiN jQuery Css Selectors")]
-[assembly: AssemblyDescription("Enable writing CSS selectors to select elements in WatiN instead of navigating properties. 0368ad15aceb982319178b9a1a978a734addb4a8 - 2011-05-05 110508")]
+[assembly: AssemblyDescription("Enable writing CSS selectors to select elements in WatiN instead of navigating properties. 7087a23d402203e3da9bae30281c67df3f1be93a - 2011-05-05 122438")]
 [assembly: AssemblyProduct("WatiN jQuery Css Selectors")]
 [assembly: AssemblyCopyright("Unknown, BSD possibly?")]
 [assembly: ComVisible(false)]
