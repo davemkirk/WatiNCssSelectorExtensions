@@ -1,5 +1,0 @@
-aa
-    This file's name gives you the specifics of the commit.
-    
-    Commit hash:		74bd275328340ac5bf30e9cd87b793887a854740
-    Commit date:		2011-05-05 104149

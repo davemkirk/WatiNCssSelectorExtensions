@@ -18,14 +18,14 @@ Folders = {
 }
 
 Files = {
-  :sln => "WatinCssSelectorExtensions.sln",
+  :sln => "WatiN.CssSelectorExtensions.sln",
   :version => "VERSION",
   
   :proj_key => {
     :nuspec => File.join(Folders[:nuspec], "#{Projects[:proj_key][:id]}.nuspec"),
-	:test_log => File.join(Folders[:tests], "WatiNCssSelectorExtensions.log"),
-	:test_xml => File.join(Folders[:tests], "WatiNCssSelectorExtensions.xml"),
-	:test => 'ex: WatiNCssSelectorExtensions.Tests.dll'
+	:test_log => File.join(Folders[:tests], "WatiN.CssSelectorExtensions.Tests.log"),
+	:test_xml => File.join(Folders[:tests], "WatiN.CssSelectorExtensions.Tests.xml"),
+	:test => 'ex: WatiN.CssSelectorExtensions.dll'
   }
 }
 

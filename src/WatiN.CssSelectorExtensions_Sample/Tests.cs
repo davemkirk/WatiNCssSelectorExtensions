@@ -2,10 +2,10 @@
 using System.Linq;
 using NUnit.Framework;
 using WatiN.Core;
-using WatiNCssSelectorExtensions;
 using WatiN.Core.Constraints;
+using WatiN.CssSelectorExtensions;
 
-namespace WatinCssSelectorExtensions_Sample
+namespace WatiN.CssSelectorExtensions_Sample
 {
     [TestFixture]
     public class DemoTests

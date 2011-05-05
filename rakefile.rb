@@ -191,7 +191,7 @@ namespace :proj do
 	
     nuspec.output_file = Files[:proj_key][:nuspec]
 	
-    nuspec_copy(:proj_key, "*WatiNCssSelectorExtensions.{dll,xml,pdb}")
+    nuspec_copy(:proj_key, "*CssSelectorExtensions.{dll,xml,pdb}")
 	
     CLEAN.include(Folders[:nuspec])
   end

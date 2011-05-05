@@ -2,8 +2,8 @@
 Projects = {
 	:proj_key => {	
 		:id => "WatiN.CssSelectorExtensions",
-		:dir => "WatiNCssSelectorExtensions",
-		:test_dir => "WatiNCssSelectorExtensions_Sample",
+		:dir => "WatiN.CssSelectorExtensions",
+		:test_dir => "WatiN.CssSelectorExtensions.Tests",
 		:title => "WatiN jQuery Css Selectors",
 		:description => "Enable writing CSS selectors to select elements in WatiN instead of navigating properties.",
 		:copyright => "Unknown, BSD possibly?",

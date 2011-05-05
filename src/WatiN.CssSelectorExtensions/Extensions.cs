@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WatiN.Core;
 using Fizzler;
-using WatiN.Core.Constraints;
-using WatiN.Core.Native;
 
-namespace WatiNCssSelectorExtensions
+namespace WatiN.CssSelectorExtensions
 {
     public static class Extensions
     {
