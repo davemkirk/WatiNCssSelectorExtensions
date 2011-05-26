@@ -10,50 +10,60 @@ namespace WatiN.CssSelectorExtensions.Tests
 	/// </summary>
 	[TestFixture]
 	public class BasicCssSelectorTests
-	{ 
+	{
+		private IE browser;
+
+		[SetUp]
+		public void Setup()
+		{
+			browser = new IE("http://localhost:8181/");
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+			if (browser != null)
+				browser.Dispose();
+		}
+
 		[Test]
 		public void Test001_UniversalSelectors()
 		{
-			using (Browser browser = new IE("http://localhost:8181/"))
-			{
-				var links = browser.CssSelectAll("*");
+			var links = browser.CssSelectAll("*");
 
-				Console.WriteLine("{0} -- {1}", links.Count(), browser.Elements.Count()); //shouldn't these match?
-				Assert.That(links.Count() > 20);
-			}
+			Console.WriteLine("{0} -- {1}", links.Count(), browser.Elements.Count()); //shouldn't these match?
+			Assert.That(links.Count() > 20);
 		}
 
 		[Test]
 		public void Test002_TypeSelectors()
 		{
-			using (Browser browser = new IE("http://localhost:8181/"))
-			{
-				var links = browser.CssSelectAll("a");
+			var links = browser.CssSelectAll("a");
 				
-				Assert.That(links.Count() > 1);
-				Assert.That(links.First().Text == "Log In");                
-			}
+			Assert.That(links.Count() > 1);
+			Assert.That(links.First().Text == "Log In");
 		}
 
 		[Test]
 		public void Test003_AttributeSelectors_HasAttribute() 
 		{
-			using (Browser browser = new IE("http://localhost:8181/"))
-			{
-				var links = browser.CssSelectAll("a[title]");
-				Assert.That(links.Any(e => e.TagName == "A"));
-			}
+			var links = browser.CssSelectAll("a[title]");
+			Assert.That(links.Any(e => e.TagName == "A"));
 		}
 
 		[Test]
 		public void Test004_AttributeSelectors_ExactValue()
 		{
-			using (Browser browser = new IE("http://localhost:8181/"))
-			{
-				var links = browser.CssSelectAll("a[title='ASP.NET Website']");
-				Assert.That(links.Count() == 1);
-			}
-			
+			var links = browser.CssSelectAll("a[title='ASP.NET Website']");
+			Assert.That(links.Count() == 1);
+		}
+
+		[Test]
+		public void Select_child_element()
+		{
+			var main = browser.CssSelect(".main");
+			var header = main.CssSelect("h2");
+			Assert.That(header.Text, Is.StringContaining("Welcome to ASP.NET!"));
 		}
 
 
@@ -96,11 +106,8 @@ namespace WatiN.CssSelectorExtensions.Tests
 		[Test]
 		public void Test999_ClassSelectors()
 		{
-			using (Browser browser = new IE("http://localhost:8181/"))
-			{
-				var menu = browser.CssSelectAll("table.menu");
-				Assert.That(menu.Count() == 1);
-			}
+			var menu = browser.CssSelectAll("table.menu");
+			Assert.That(menu.Count() == 1);
 		}
 
 		[Test, Ignore("Under Construction")]

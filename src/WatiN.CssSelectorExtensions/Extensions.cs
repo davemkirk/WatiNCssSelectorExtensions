@@ -29,12 +29,17 @@ namespace WatiN.CssSelectorExtensions
        
         public static IEnumerable<Element> CssSelectAll(this Element node, string selector)
         {
-            return CssSelectAll(node, selector);
+            return node.CompileAndSelectAll(selector);
         }
         
         #endregion
    
         #region Compiler & private Select helpers
+
+        private static IEnumerable<Element> CompileAndSelectAll(this Element node, string selector)
+        {
+            return CompileForElement(selector)(node);
+        }
 
         private static IEnumerable<Element> CompileAndSelectAll(this IEnumerable<Element> nodes, string selector)
         {
